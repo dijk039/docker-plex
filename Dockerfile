@@ -52,7 +52,9 @@ ENV RUN_AS_ROOT="true" \
 
 EXPOSE 32400
 
-ADD ./Preferences.xml /Preferences.xml
-ADD ./start.sh /start.sh
+ADD ./Preferences.xml /tmp/Preferences.xml
+ADD ./start.sh /tmp/start.sh
+RUN chmod u+x /tmp/start.sh
+RUN cp /tmp/start.sh /tmp/Preferences.xml / && rm -f /tmp/start.sh /tmp/Preferences.xml 
 
 CMD ["/start.sh"]
